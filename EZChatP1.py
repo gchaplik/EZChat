@@ -9,6 +9,11 @@ def LS(word):
     return stemm.stem(word.lower())
 
 def BOW(TSent,low):
-    pass
+    TSent=[LS(w) for w in TSent]
+    bag=np.zeros(len(low),dtype=np.float32)
+    for index,w in enumerate(low):
+        if w in TSent:
+            bag[index]=1.0
+    return bag
 
 
