@@ -1,5 +1,10 @@
 import json
 from EZChatP1 import token,BOW,LS
+
+import torch
+import torch.nn as nn
+from torch.utils.data import Dataset,DataLoader
+
 with open("ourjsonFile",'r') as f:
     intents = json.load(f)
 
