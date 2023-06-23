@@ -33,7 +33,7 @@
         ]
     },{
         "tags":"CQuestion",
-        "Patterns":[
+        "Pattern":[
             "What mousepads do you have?",
             " what is your selection of mousepads",
             "how many mousepads do you have"
@@ -42,7 +42,7 @@
     
     },{
         "tags":"return",
-        "patterns": [
+        "pattern": [
             "My mousepad is defective how do I return?",
             "what is your return policy?",
             "how long do i have to return if something is wrong?",
@@ -52,6 +52,79 @@
         "response": [
             "you can return your product within 30 days of recieving it, it must be sent back in its original packeging. To read more please visit https://onipads.com/apps/frequently-asked-questions?faq-section-id=67634&faq-article-id=304056",
             "your product may be returned within 30 days of purchase, please be in contact with our customer service team you can reach them servicesonipads@gmail.com. A representative will contact you within 1 business day"
+        ]
+    },{
+        "tag":"refund",
+        "pattern": [
+            "how do i refund my mousepad",
+            "my mousepad is damaged what do I do?",
+            "where do i return the mousepad if it is damaged"
+        ],
+        "response":[
+            "To initiate the refund process please send us an email at servicesonipads@gmail.com, our customer service team will answer asap",
+            "please contact us at servicesonipads@gmail.com to initiate the refund process"
+
+        ]
+
+        
+    },{
+        "tag":"change",
+        "pattern": [
+            "How can I change my order?",
+            "can I cancel my order?",
+            "How long do i have to change my order",
+            "how long do i have to cancel my order"
+
+        ],
+        "response": [
+            "to ensure on-time delivery you have 24 hours from when you placed your order to cancel/change your order. Thank you for your understanding",
+            "you have 24 hours to change or cancel you order, for further questions contact us at servicesonipads@gmail.com"
+            
+        ]
+
+    },{
+        "tag":"exchange",
+        "pattern": [
+            "do you accept exchanges?",
+            "how do i exchange my product",
+            "is there anyway to exchange my product"
+
+        ],
+        "response": [
+            "we do not offer exchanges, but if you recieved the wrong order contact us at servicesonipads@gmail.com ",
+            "unfortunately we do not have any opportunity for exchange, however if you recieved the wrong product email us at servicesonipads@gmail.com "
+        ]
+    },{
+        "tag":"shipping",
+        "pattern": [
+            "How long does delivery usually take?",
+            "what is your standart shipping time",
+            "where is my order",
+           
+        ],
+        "response":[
+            "Once your order is placed your package will be shipped within 2-4 days,\n 1-2 days after it has been shipped you will be sent a tracking number.\n delivery takes 10-15 business days with a potential 3 additional days if we are experiencing high volume",
+            "your order will be shipped 2-4 days after you place your order. It should arrive within 10-15 business days and may take up to 3 additional business days depending on volume"
+        ]
+    },{
+        "tags":"sizing",
+        "pattern":[
+            "what sizes are your mousepads?",
+            "do you have small mousepads",
+            "do you have big mousepads"
+        ],
+        "response":[
+            "we have large mouse pads and small mousepads,\n large comes in the following sizes:  90 x 40 cm,  80 x 40 cm, 70 x 40 cm, 60 x 40 cm \n small comes in the following sizes: 35 x 30 cm, 25 x 20 cm, 22x 18 cm"
+        ]
+    },{
+        "tag":"tracking",
+        "pattern":[
+            "how do i track my order",
+            "where can I see my order on the map"
+        ],
+        "response": [
+            "click the following link and input your tracking number: https://onipads.com/apps/parcelpanel",
+            "Thank you for reaching out, click the following link and input your tracking number: https://onipads.com/apps/parcelpanel"
         ]
     }
     

@@ -15,7 +15,7 @@ for intent in intents['intents']:
         allWords.extend(w)
         xy.append((w,tag))
 
-ignore=["?",".","/",",","+","-","(",")"]
+ignore=["?",".","/",",","+","-","(",")","\n"]
 
 allWords=[LS(w) for w in allWords if w not in ignore]
 allWords=sorted(set(allWords))
