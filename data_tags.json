@@ -99,7 +99,7 @@
         "pattern": [
             "How long does delivery usually take?",
             "what is your standart shipping time",
-            "where is my order",
+            "where is my order"
            
         ],
         "response":[
