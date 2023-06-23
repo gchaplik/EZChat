@@ -1,24 +1,64 @@
 {
-    "Tag": "Collections",
-    "Patterns": [
-        "Attack on Titan",
-        "Berserk",
-        "Bleach",
-        "Chainsaw Man",
-        "Death Note",
-        "Demon Slayer",
-        "Dragon Ball Z",
-        "Great Wave",
-        "Haikyu!!",
-        "Hunter x Hunter",
-        "Japan",
-        "Jojo's Bizarre Adventure",
-        "Jujutsu Kaisen",
-        "Manga",
-        "Naruto",
-        "One Piece",
-        "One Punch Man",
-        "Tokyo Ghoul"
-    ],
-    "Response": ["Test Response"]
+   "intents":[
+    {
+        "tag":"greeting",
+        "patterns":[
+            "Hello",
+            "How are you?",
+            "Hey",
+            "What's up"
+
+        ],
+        "response": [
+            "Hello ^._.^",
+            "How can I help you?",
+            "Is there anything I can help you with?"
+        ]
+            
+        
+    },
+    {
+        "tag": "leaving",
+        "Pattern": [
+            "Bye",
+            "Goodbye",
+            "See ya later"
+    
+    
+        ],
+        "response": [
+            "Thank you for using EZChat for Onipads.com",
+            "Have a Great day",
+            "Bye, Come again soon!!"
+        ]
+    },{
+        "tags":"CQuestion",
+        "Patterns":[
+            "What mousepads do you have?",
+            " what is your selection of mousepads",
+            "how many mousepads do you have"
+        ],
+        "response":"we currently have 15 different mousepad collections and they are the following:\n Attack on Titan,\n  Berserk,\n Bleach,\n  Chainsaw Man,\n Death Note,\n Demon Slayer,\n Dragon Ball Z,\n Great Wave,\n Haikyu!!,\n Hunter x Hunter,\n Japan,\n Jojo's Bizarre Adventure,\n Jujutsu Kaisen,\n Manga, Naruto,\n One Piece,\n One Punch Man,\n Tokyo Ghoul"
+    
+    },{
+        "tags":"return",
+        "patterns": [
+            "My mousepad is defective how do I return?",
+            "what is your return policy?",
+            "how long do i have to return if something is wrong?",
+            "do you do returns?"
+
+        ],
+        "response": [
+            "you can return your product within 30 days of recieving it, it must be sent back in its original packeging. To read more please visit https://onipads.com/apps/frequently-asked-questions?faq-section-id=67634&faq-article-id=304056",
+            "your product may be returned within 30 days of purchase, please be in contact with our customer service team you can reach them servicesonipads@gmail.com. A representative will contact you within 1 business day"
+        ]
+    }
+    
+       
+
+    ]
+    
+   
+   
 }
