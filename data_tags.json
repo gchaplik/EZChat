@@ -19,7 +19,7 @@
     },
     {
         "tag": "leaving",
-        "Pattern": [
+        "patterns": [
             "Bye",
             "Goodbye",
             "See ya later"
@@ -32,8 +32,8 @@
             "Bye, Come again soon!!"
         ]
     },{
-        "tags":"CQuestion",
-        "Pattern":[
+        "tag":"CQuestion",
+        "patterns":[
             "What mousepads do you have?",
             " what is your selection of mousepads",
             "how many mousepads do you have"
@@ -41,8 +41,8 @@
         "response":"we currently have 15 different mousepad collections and they are the following:\n Attack on Titan,\n  Berserk,\n Bleach,\n  Chainsaw Man,\n Death Note,\n Demon Slayer,\n Dragon Ball Z,\n Great Wave,\n Haikyu!!,\n Hunter x Hunter,\n Japan,\n Jojo's Bizarre Adventure,\n Jujutsu Kaisen,\n Manga, Naruto,\n One Piece,\n One Punch Man,\n Tokyo Ghoul"
     
     },{
-        "tags":"return",
-        "pattern": [
+        "tag":"return",
+        "patterns": [
             "My mousepad is defective how do I return?",
             "what is your return policy?",
             "how long do i have to return if something is wrong?",
@@ -55,7 +55,7 @@
         ]
     },{
         "tag":"refund",
-        "pattern": [
+        "patterns": [
             "how do i refund my mousepad",
             "my mousepad is damaged what do I do?",
             "where do i return the mousepad if it is damaged"
@@ -69,7 +69,7 @@
         
     },{
         "tag":"change",
-        "pattern": [
+        "patterns": [
             "How can I change my order?",
             "can I cancel my order?",
             "How long do i have to change my order",
@@ -84,7 +84,7 @@
 
     },{
         "tag":"exchange",
-        "pattern": [
+        "patterns": [
             "do you accept exchanges?",
             "how do i exchange my product",
             "is there anyway to exchange my product"
@@ -96,7 +96,7 @@
         ]
     },{
         "tag":"shipping",
-        "pattern": [
+        "patterns": [
             "How long does delivery usually take?",
             "what is your standart shipping time",
             "where is my order"
@@ -107,8 +107,8 @@
             "your order will be shipped 2-4 days after you place your order. It should arrive within 10-15 business days and may take up to 3 additional business days depending on volume"
         ]
     },{
-        "tags":"sizing",
-        "pattern":[
+        "tag":"sizing",
+        "patterns":[
             "what sizes are your mousepads?",
             "do you have small mousepads",
             "do you have big mousepads"
@@ -118,7 +118,7 @@
         ]
     },{
         "tag":"tracking",
-        "pattern":[
+        "patterns":[
             "how do i track my order",
             "where can I see my order on the map"
         ],
