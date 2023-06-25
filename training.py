@@ -106,3 +106,18 @@ for epoch in range(num_epochs):
 
 
 print(f'final loss: {loss.item():.4f}')
+
+# Define model params
+data_model = {
+    "model_state": model.state_dict(),
+    "input_size": input_size,
+    "output_size": output_size,
+    "hidden_size": hidden_size,
+    "collected_words": all_words,
+    "collected_tags": tags
+}
+
+# Save model to pickled file
+FILE = "data.pth"
+torch.save(data_model, FILE)
+print(f'Training Complete. File saved to {FILE}')
