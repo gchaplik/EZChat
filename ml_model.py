@@ -1,24 +1,20 @@
 import torch
 import torch.nn as nn
 
-# Define neutral network and params
-# input size, number of classes should be static but layer size is dynamic
-class NeuralNetwork(nn.Module):
-    def __init__(self, input_size, hidden_layer_size, num_classes):   
-        super(NeuralNetwork, self).__init__()
-        self.layer1 = nn.Linear(input_size, hidden_layer_size)
-        self.layer2 = nn.Linear(hidden_layer_size, hidden_layer_size)
-        self.layer3 = nn.Linear(hidden_layer_size, num_classes)
-        # Define activation function
-        self.activation = nn.ReLU()
+
+class NeuralNet(nn.Module):
+    def __init__(self, input_size, hidden_size, num_epochs):
+        super(NeuralNet, self).__init__()
+        self.l1 = nn.Linear(input_size, hidden_size) 
+        self.l2 = nn.Linear(hidden_size, hidden_size) 
+        self.l3 = nn.Linear(hidden_size, num_epochs)
+        self.relu = nn.ReLU()
     
-    def fwd(self, x):
-        output = self.layer1(x)
-        output = self.activation(output)
-        output = self.layer2(x)
-        output = self.activation(output)
-        output = self.layer3(x)
-        output = self.activation(output)
-        
-        # no activation function and no softmax
-        return output
+    def forward(self, x):
+        out = self.l1(x)
+        out = self.relu(out)
+        out = self.l2(out)
+        out = self.relu(out)
+        out = self.l3(out)
+        # no activation and no softmax at the end
+        return out

@@ -1,91 +1,108 @@
-import json
-from EZChatP1 import token,BOW,LS
 import numpy as np
+import random
+import json
+
 import torch
 import torch.nn as nn
-from torch.utils.data import Dataset,DataLoader
-from ml_model import NeuralNetwork
+from torch.utils.data import Dataset, DataLoader
 
-with open("data_tags.json",'r') as f:
+from EZChatP1 import BOW, token, LS
+from ml_model import NeuralNet
+
+with open('data_tags.json', 'r') as f:
     intents = json.load(f)
-allWords=[]
-tags=[]
-xy=[]
 
-for intent in intents['intents']:
-    tag = intent['tag']
-    tags.append(tag)
-    for pattern in intent["patterns"]:
-        w=token(pattern)
-        allWords.extend(w)
-        xy.append((w,tag))
+allWords = []
+tags = []
+xy = []
+xtrain = []
+ytrain = []
 ignore=["?",".","/",",","+","-","(",")"]
+for i in intents['intents']:
+    tag = i['tag']
+    tags.append(tag)
+    for p in i['patterns']:
+        w = token(p)
+        allWords.extend(w)
+        xy.append((w, tag))
 
-allWords=[LS(w) for w in allWords if w not in ignore]
-allWords=sorted(set(allWords))
-tags=sorted(set(tags))
 
-xtrain=[]
-ytrain=[]
-for(patternS,tag) in xy:
-    bag=BOW(patternS,allWords)
-    
+
+all_words = [LS(w) for w in allWords if w not in ignore]
+
+all_words = sorted(set(all_words))
+tags = sorted(set(tags))
+
+print(len(xy), "patterns")
+print(len(tags), "tags:", tags)
+print(len(all_words), "unique stemmed words:", all_words)
+
+
+
+for (pattern_sentence, tag) in xy:
+
+    bag = BOW(pattern_sentence, all_words)
     xtrain.append(bag)
-    l = tags.index(tag)
-    ytrain.append(l)
-xtrain=np.array(xtrain)
-ytrain=np.array(ytrain)
 
-class CDS(Dataset):
+    label = tags.index(tag)
+    ytrain.append(label)
+
+xtrain = np.array(xtrain)
+ytrain = np.array(ytrain)
+
+# Hyper-parameters 
+num_epochs = 1000
+batch_size = 8
+learning_rate = 0.001
+input_size = len(xtrain[0])
+hidden_size = 8
+output_size = len(tags)
+print(input_size, output_size)
+
+class ChatDataset(Dataset):
+
     def __init__(self):
-        self.n_samples=len(xtrain)
-        self.xData=xtrain
-        self.yData=ytrain
-    def __getitem__(self,index):
-        return self.xData[index],self.yData[index]
+        self.n_samples = len(xtrain)
+        self.x_data = xtrain
+        self.y_data = ytrain
+    def __getitem__(self, index):
+        return self.x_data[index], self.y_data[index]
+
     def __len__(self):
         return self.n_samples
 
-#params
-batchsize=8
+dataset = ChatDataset()
+train_loader = DataLoader(dataset=dataset,
+                          batch_size=batch_size,
+                          shuffle=True,
+                          num_workers=0)
 
-#let the input size based off the 1st bag of words
-hidden_layers = 8
-output_size = len(tags)
-input_size = len(xtrain[0])
-learn_rate = 0.001
-num_epochs = 1000 # 1000 iterations
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-dataset=CDS()
-tLoader = DataLoader(dataset = dataset , batch_size = batchsize , shuffle = True , num_workers = 0)
+model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
-#define model within training set
-user_device = torch.device('cuda' if torch.cuda.is_available else 'cpu')
-model = NeuralNetwork(input_size, hidden_layers, num_epochs)
-#loss and optimizer parameters
-criteria = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr = learn_rate)
+# Loss and optimizer
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
+# Train the model
 for epoch in range(num_epochs):
-    for (words, labels) in tLoader:
-        words = words.to(user_device)
-        labels = labels.to(user_device)
-
-#fwd activation
+    for (words, labels) in train_loader:
+        words = words.to(device)
+        labels = labels.to(dtype=torch.long).to(device)
+        
+        # Forward pass
         outputs = model(words)
-        loss = criteria(outputs, labels)
 
-#optimizer and backtrack
+        loss = criterion(outputs, labels)
+        
+        # Backward and optimize
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-
-#debug output
-        if (epoch + 1) % 100 == 0:
-            print(f'Epoch {epoch + 1}/{num_epochs}, loss = {loss.item()}') 
-
-print(f'Final model loss: {loss.item()}')
-       
-
-
         
+    if (epoch+1) % 100 == 0:
+        print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+
+
+print(f'final loss: {loss.item():.4f}')
